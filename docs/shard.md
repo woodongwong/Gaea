@@ -27,7 +27,7 @@ Gaea支持kingshard常用分表规则, 对应关系如下:
 
 则namespace配置文件中的分片表规则可参考以下示例配置:
 
-```
+```json
 // namespace配置文件
 // {
 // ...
@@ -75,7 +75,7 @@ Gaea支持mycat的常用分库规则, 对应关系如下:
 
 则namespace配置文件中的分片表规则可参考以下示例配置:
 
-```
+```json
 // namespace配置文件
 // {
 // ...
@@ -104,7 +104,7 @@ Gaea支持mycat的常用分库规则, 对应关系如下:
 
 注: databases配置项, 指定了每个分片表的实际库名, 这里采用了简写的方式, 与以下配置等价:
 
-```
+```json
 "databases": [
     "db_mycat_0",
     "db_mycat_1",
@@ -115,7 +115,7 @@ Gaea支持mycat的常用分库规则, 对应关系如下:
 
 如果指定的实际库名不是递增的, 也可以手动指定, 如:
 
-```
+```json
 "databases": [
     "db_mycat_0",
     "db_mycat_1",
@@ -128,7 +128,7 @@ Gaea支持mycat的常用分库规则, 对应关系如下:
 
 mycat_long的配置规则如下:
 
-```
+```json
 {
     "db": "db_mycat",
     "table": "tbl_mycat_long",
@@ -156,7 +156,7 @@ mycat_long的配置规则如下:
 
 mycat_murmur的配置规则如下:
 
-```
+```json
 {
     "db": "db_mycat",
     "table": "tbl_mycat_murmur",
@@ -186,7 +186,7 @@ mycat_murmur的配置规则如下:
 
 mycat_string的配置规则如下:
 
-```
+```json
 {
     "db": "db_mycat",
     "table": "tbl_mycat_string",
@@ -219,7 +219,7 @@ Gaea分片SQL要求多个表具有关联关系 (一个分片表, 多个关联表
 
 关联表需要与同数据库的某个分片表关联. 例如, 将`db_mycat`库的`tbl_mycat_child`配置为关联表, 分片列名为`id`, 父表为`tbl_mycat`, 则需要在`shard_rules`中添加以下配置:
 
-```
+```json
 {
     "db": "db_mycat",
     "table": "tbl_mycat_child",
@@ -231,7 +231,7 @@ Gaea分片SQL要求多个表具有关联关系 (一个分片表, 多个关联表
 
 此时即可执行分片内的关联查询:
 
-```
+```sql
 SELECT * FROM tbl_mycat, tbl_mycat_child WHERE tbl_mycat_child.id=5 AND tbl_mycat.user_name='hello';
 ```
 
@@ -239,7 +239,7 @@ SELECT * FROM tbl_mycat, tbl_mycat_child WHERE tbl_mycat_child.id=5 AND tbl_myca
 
 全局表是在各个slice上 (准确的说是各个slice的各个DB上) 数据完全一致的表, 方便执行一些跨分片查询, 配置如下:
 
-```
+```json
 {
     "db": "db_mycat",
     "table": "tbl_mycat_global",

@@ -45,7 +45,7 @@ proxy监控概览这部分主要展示gaea proxy的整体运行情况，主要�
 
 ## prometheus配置说明
 
-```
+```yaml
 - job_name: 'gaea_proxy'
     metrics_path: '/api/metric/metrics'
     static_configs:
@@ -57,13 +57,10 @@ proxy监控概览这部分主要展示gaea proxy的整体运行情况，主要�
       password: admin_password
 ```
 需要修改admin_addr,admin_user,admin_password与gaea.ini中的以下几项保持一致。
-```
+```ini
 ;管理地址
 admin_addr=0.0.0.0:13307
 ;basic auth
 admin_user=admin
 admin_password=admin
 ```
-##  
-
- 
